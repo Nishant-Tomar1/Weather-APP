@@ -17,8 +17,9 @@ body{
 }
 
 .container{
+    border: 1px solid;
     height: 425px;
-    background-color: #202f3a;
+    background-color: #013459;
     color: #fff;
     border-radius: 25px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);    
@@ -36,6 +37,7 @@ body{
     background-size: cover;
     transform: scale(1) perspective(200px);
     cursor: pointer;
+    border: 1.5px solid;
     box-shadow: 0 0 20px -10px rrgba(0, 0, 0, 0.2);
     transition: all 0.35s ease;
 }

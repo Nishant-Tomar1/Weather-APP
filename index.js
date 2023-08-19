@@ -4,6 +4,8 @@ const todayInfo = document.querySelector('.today-info');
 const todayWeatherIcon = document.querySelector('.today-weather i');
 const todayTemp = document.querySelector('.weather-temp');
 const daysList = document.querySelector('.days-list');
+const body = document.querySelector('.container');
+const left = document.querySelector('.left-info')
 
 const iconList = {
     '01d': 'sun',
@@ -22,13 +24,9 @@ const iconList = {
     '11n': 'cloud-lightning',
     '13d': 'cloud-snow',
     '13n': 'cloud-snow',
-    '50d': 'water', 
+    '50d': 'water',
     '50n': 'water'
 };
-
-var bg = Math.floor(Math.random()*10+1);
-var bgImageUrl = "images/Weather-Background" + bg + ".jpg";
-document.querySelector("body").style.backgroundImage=`url("${bgImageUrl}")`;
 
 function fetchWeatherData(location) {
     //making Api url to get the data
@@ -41,6 +39,7 @@ function fetchWeatherData(location) {
         const todayTemperature = `${Math.round(data.list[0].main.temp)}°C`;
         const todayWeatherIconCode = data.list[0].weather[0].icon;
         console.log(data);
+        //console.log(todayWeatherIconCode[2]);
 
         todayInfo.querySelector('h2').textContent = new Date().toLocaleDateString('en', { weekday: 'long' });
         todayInfo.querySelector('span').textContent = new Date().toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -55,7 +54,7 @@ function fetchWeatherData(location) {
         weatherDescriptionElement.textContent = todayWeather;
 
         const feelsLike = document.querySelector('.today-weather > h4');
-        feelsLike.textContent = `Feels like `+`${Math.round(data.list[0].main.feels_like)}°C`;
+        feelsLike.textContent = `Feels like ` + `${Math.round(data.list[0].main.feels_like)}°C`;
 
         const highTemp = document.querySelector('.today-weather > h5 > .Highest');
         highTemp.textContent = `${Math.round(data.list[0].main.temp_max)}°C`;
@@ -116,6 +115,40 @@ function fetchWeatherData(location) {
 
             // Stop after getting 4 distinct days
             if (count === 4) break;
+        }
+
+        var bg = Math.floor(Math.random() * 10 + 1);
+        var bgImageUrl = "images/day/Weather-Background" + bg + ".jpg";
+        var bgImageUrlNight = "images/night/bg" + bg + ".jpg";
+        document.querySelector("body").style.backgroundImage = `url("${bgImageUrl}")`;
+
+        function night() {
+            console.log("night here")
+            document.querySelector("body").style.backgroundImage = `url("${bgImageUrlNight}")`;
+            left.style.background = "black";
+            body.style.background = "black";
+            body.style.border = "1.5px solid white";
+            left.style.border = "1.5px solid white";
+            locButton.style.background = "rgb(59, 0, 130)";
+            locButton.style.border = "1.25px solid white";
+        }
+
+        function day() {
+            document.querySelector("body").style.backgroundImage = `url("${bgImageUrl}")`;
+            left.style.background = `url("images/bg.avif")`;
+            body.style.background = "#013459";
+            body.style.border = "1.5px solid white";
+            left.style.border = "1.5px solid white";
+            locButton.style.background = " #4688ec";
+            locButton.style.border = "1.25px solid white";
+        }
+
+        if (todayWeatherIconCode[2] == 'n') {
+            night();
+        }
+
+        else {
+            day();
         }
     }).catch(error => {
         alert(`DATA NOT AVAILABLE !!  Please Enter a different location`);
