@@ -57,6 +57,12 @@ function fetchWeatherData(location) {
         const feelsLike = document.querySelector('.today-weather > h4');
         feelsLike.textContent = `Feels like `+`${Math.round(data.list[0].main.feels_like)}°C`;
 
+        const highTemp = document.querySelector('.today-weather > h5 > .Highest');
+        highTemp.textContent = `${Math.round(data.list[0].main.temp_max)}°C`;
+
+        const lowTemp = document.querySelector('.today-weather > h5 > .Lowest');
+        lowTemp.textContent = `${Math.round(data.list[0].main.temp_min)}°C `;
+
         // Updating todays info in the right "day-info" section
         const todayPrecipitation = `${data.list[0].pop}%`;
         const todayHumidity = `${data.list[0].main.humidity}%`;
@@ -112,7 +118,7 @@ function fetchWeatherData(location) {
             if (count === 4) break;
         }
     }).catch(error => {
-        alert(`DATA NOT AVAILABLE !!Please Enter a different location`);
+        alert(`DATA NOT AVAILABLE !!  Please Enter a different location`);
     });
 }
 
