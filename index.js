@@ -118,7 +118,7 @@ function fetchWeatherData(location) {
         }
 
         var bg = Math.floor(Math.random() * 10 + 1);
-        var bgImageUrl = "images/day/Weather-Background" + bg + ".jpg";
+        var bgImageUrl = "images/day/bg" + bg + ".jpg";
         var bgImageUrlNight = "images/night/bg" + bg + ".jpg";
         document.querySelector("body").style.backgroundImage = `url("${bgImageUrl}")`;
 
