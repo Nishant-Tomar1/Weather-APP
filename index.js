@@ -38,12 +38,12 @@ function fetchWeatherData(location) {
         const todayWeather = data.list[0].weather[0].description;
         const todayTemperature = `${Math.round(data.list[0].main.temp)}°C`;
         const todayWeatherIconCode = data.list[0].weather[0].icon;
-        console.log(data);
+        // console.log(data);
         //console.log(todayWeatherIconCode[2]);
 
         todayInfo.querySelector('h2').textContent = new Date().toLocaleDateString('en', { weekday: 'long' });
         todayInfo.querySelector('span').textContent = new Date().toLocaleDateString('en', { day: 'numeric', month: 'long', year: 'numeric' });
-        todayWeatherIcon.className = `bx bx-${iconList[todayWeatherIconCode]}`;
+        // todayWeatherIcon.className = `bx bx-${iconList[todayWeatherIconCode]}`;
         todayTemp.textContent = todayTemperature;
 
         // Updating location and temperature in left side
